@@ -1,6 +1,6 @@
 
-<h1 align="center">PG222 FitnessManagement</h1>  
-<h3 align="center">Hi 👋, This is the Github Repo for the OOP and DSA group project at SLIIT, We Used The spring boot framework and text files for databases. (PG222)</h3>  
+<h1 align="center">FitnessManagement</h1>  
+<h3 align="center">Hi 👋, This is the GitHub repo for the OOP and DSA group project at SLIIT. We used the Spring Boot framework and text files for databases. (PG222)</h3>  
 <p></p>  
 <h2 align="left">Group Members</h3>  
 
