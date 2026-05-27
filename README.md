@@ -1,29 +1,100 @@
+ # Fitness Management System
 
-<h1 align="center">Fitness Management System</h1>  
-<h3 align="center">Hi 👋, This is the GitHub repo for the OOP and DSA group project at SLIIT. We used the Spring Boot framework and text files for databases. (PG222)</h3>  
-<p></p>  
-<h2 align="left">Group Members</h3>  
+## Overview
 
+The Fitness Management System is a Java-based academic group project developed to manage gym members, attendance records, and fitness-related operations efficiently. The system was designed using Object-Oriented Programming (OOP) principles and Data Structures & Algorithms (DSA) concepts to create a structured and maintainable solution.
 
-| ID         | Name                  |        |
-|------------|-----------------------|------------|
-| IT24102279 | Helambage H.D.R.W.    |(Ranindu) |
-| IT24100304 | Nimneth P B Y         |(Yenula)  |
-| IT24102334 | Thathsara K P W P T   |(Tehan)|
-| IT24100926 | Pathirana E.P.D.N     |(Dulashee)|
-| IT24100626 | Silva M.G.N.          |(Gayathri)|
-| IT24102257 | Senadehera P.V.S.T    |(Sahan)|
+This project helped improve problem-solving, teamwork, and software development skills while working in a collaborative environment.
 
-  
-<h3 align="">Languages and Tools:</h3>  
-<p align="left"> <a href="https://www.w3schools.com/css/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/css3/css3-original-wordmark.svg" alt="css3" width="40" height="40"/> </a> <a href="https://git-scm.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/git-scm/git-scm-icon.svg" alt="git" width="40" height="40"/> </a> <a href="https://www.w3.org/html/" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/html5/html5-original-wordmark.svg" alt="html5" width="40" height="40"/> </a> <a href="https://www.java.com" target="_blank" rel="noreferrer"> <img src="https://raw.githubusercontent.com/devicons/devicon/master/icons/java/java-original.svg" alt="java" width="40" height="40"/> </a> <a href="https://tailwindcss.com/" target="_blank" rel="noreferrer"> <img src="https://www.vectorlogo.zone/logos/tailwindcss/tailwindcss-icon.svg" alt="tailwind" width="40" height="40"/> </a> </p>
+---
 
-## DSA Links for Viva
+## Features
 
-Here are the relevant data structures and algorithms (DSA) related files used in the
+* User authentication and role-based access control
+* Gym member registration and management
+* Attendance tracking system
+* Membership renewal management
+* Queue-based request handling (FIFO)
+* Sorting functionality using Insertion Sort
+* Modular OOP-based architecture
 
-- [`RenewalRequestQueue.java`](https://github.com/IT24102279/PG222_FitnessManagement/blob/master/src/main/java/pg222/fitness/util/RenewalRequestQueue.java)
+---
 
-- [`RequestService.java`](https://github.com/IT24102279/PG222_FitnessManagement/blob/master/src/main/java/pg222/fitness/service/RequestService.java)
+## Technologies Used
 
-- [`MembershipService.java`](https://github.com/IT24102279/PG222_FitnessManagement/blob/master/src/main/java/pg222/fitness/service/MembershipService.java)  
+* Java
+* Maven
+* Object-Oriented Programming (OOP)
+* Data Structures & Algorithms (DSA)
+* Git & GitHub
+
+---
+
+## DSA Concepts Implemented
+
+### Queue (FIFO)
+
+Implemented a custom queue to manage membership renewal requests efficiently.
+
+### Insertion Sort
+
+Used Insertion Sort to organize and process membership-related data.
+
+---
+
+## Project Structure
+
+```text
+fitness-management-system/
+│
+├── src/
+├── docs/
+├── assets/
+├── pom.xml
+└── README.md
+```
+
+---
+
+## Team Project
+
+This project was developed as a university academic group project during Year 1 – Semester 2.
+
+---
+
+## Learning Outcomes
+
+Through this project, I gained experience in:
+
+* Applying OOP concepts in Java
+* Implementing DSA concepts in real-world scenarios
+* Team collaboration using Git & GitHub
+* Managing project structures using Maven
+* Designing modular and maintainable applications
+
+---
+
+## Future Improvements
+
+* Add database integration
+* Improve UI/UX design
+* Implement fitness progress analytics
+* Add email and notification features
+* Create a web or mobile version
+
+---
+
+## Author
+
+**Gayathri Silva**
+
+Cyber Security Undergraduate
+
+* GitHub: [https://github.com/gayathri-silva](https://github.com/gayathri-silva)
+* LinkedIn: [https://www.linkedin.com/in/gayathri-silva-0a7b04372](https://www.linkedin.com/in/gayathri-silva-0a7b04372)
+
+---
+
+## Repository Link
+
+[https://github.com/gayathri-silva/fitness-management-system](https://github.com/gayathri-silva/fitness-management-system)
