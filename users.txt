@@ -1,0 +1,6 @@
+admin1,pass,admin,admin@gmail.com
+john123,pass123,member,john@example.com
+member2,member2,member,member2@gmail.com
+member3,member3,member,member3@gmail.com
+member4,member4,member,member4@gmail.com
+admin,pass,admin,admin0@gmail.com
