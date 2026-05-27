@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Reviews - Fitness App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #4CAF50;
+            --color1: linear-gradient(to bottom right, #4CAF50, #45a049);
+            --transparent: rgba(255, 255, 255, 0.13);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            min-height: 100vh;
+            background-color: #080710;
+            padding: 20px;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            padding: 40px;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+
+        .review-card {
+            background-color: var(--transparent);
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+            border-radius: 16px;
+            padding: 20px;
+            margin-bottom: 20px;
+            color: #ffffff;
+        }
+
+        .review-username {
+            font-weight: 600;
+            font-size: 18px;
+            margin-bottom: 10px;
+        }
+
+        .review-text {
+            font-size: 16px;
+            line-height: 1.5;
+            margin-bottom: 10px;
+        }
+
+        .review-date {
+            font-size: 14px;
+            color: #888;
+        }
+
+        .links {
+            text-align: center;
+            margin-top: 30px;
+        }
+
+        .links a {
+            display: inline-block;
+            padding: 10px 20px;
+            background: var(--color1);
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            margin: 0 10px;
+            transition: all 0.4s ease;
+        }
+
+        .links a:hover {
+            transform: translateY(-2px);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Customer Reviews</h1>
+
+    <div th:each="review : ${reviews}" class="review-card">
+        <div class="review-username" th:text="${review.username}"></div>
+        <div class="review-text" th:text="${review.reviewText}"></div>
+        <div class="review-date" th:text="${review.dateTime}"></div>
+    </div>
+
+    <div class="links">
+        <a href="/">Back to Home</a>
+        <a href="/reviews">Write a Review</a>
+    </div>
+</div>
+</body>
+</html>

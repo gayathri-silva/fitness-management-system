@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Write a Review - Fitness App</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #4CAF50;
+            --color1: linear-gradient(to bottom right, #4CAF50, #45a049);
+            --transparent: rgba(255, 255, 255, 0.13);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #080710;
+        }
+
+        .container {
+            background-color: var(--transparent);
+            padding: 40px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 40px rgba(8,7,16,0.6);
+            width: 400px;
+        }
+
+        h1 {
+            color: #ffffff;
+            text-align: center;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        textarea {
+            background-color: rgba(255,255,255,0.07);
+            border: none;
+            padding: 15px;
+            border-radius: 8px;
+            color: #ffffff;
+            font-size: 16px;
+            height: 150px;
+            resize: vertical;
+            width: 100%;
+            box-sizing: border-box;
+        }
+
+        button {
+            background: var(--color1);
+            padding: 15px 20px;
+            color: #ffffff;
+            font-size: 18px;
+            font-weight: 600;
+            border: none;
+            border-radius: 30px;
+            cursor: pointer;
+            transition: all 0.4s ease;
+        }
+
+        button:hover {
+            transform: translateY(-2px);
+        }
+
+        .links {
+            margin-top: 20px;
+            text-align: center;
+        }
+
+        .links a {
+            color: #ffffff;
+            text-decoration: none;
+            margin: 0 10px;
+        }
+
+        .links a:hover {
+            text-decoration: underline;
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h1>Write a Review</h1>
+    <form th:action="@{/reviews/submit}" method="post">
+        <textarea name="reviewText" placeholder="Write your review here..." required></textarea>
+        <button type="submit">Submit Review</button>
+    </form>
+    <div class="links">
+        <a href="/">Back to Home</a>
+        <a href="/reviews/view">View All Reviews</a>
+    </div>
+</div>
+</body>
+</html>

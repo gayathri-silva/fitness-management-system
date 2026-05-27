@@ -1,0 +1,138 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display Tiers</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            align-items: center;
+            background: url('https://images.pexels.com/photos/669584/pexels-photo-669584.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2') no-repeat center center fixed;
+            background-size: cover;
+            position: relative;
+        }
+
+        /* Dark overlay to enhance readability */
+        body::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5); /* Black overlay with 50% opacity */
+            z-index: 0;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 1200px;
+            padding: 20px;
+            position: relative;
+            z-index: 1; /* Above the overlay */
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+            color: #ffffff; /* White text for contrast */
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .tier-card {
+            background-color: rgba(255, 255, 255, 0.13); /* Glassmorphism effect */
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 20px;
+            color: #ffffff; /* White text for contrast */
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 50px rgba(8, 7, 16, 0.8);
+        }
+
+        .tier-card h5 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tier-card p {
+            font-size: 16px;
+            font-weight: 300;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .tier-card .price {
+            font-size: 20px;
+            font-weight: 500;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .upgrade-button-container {
+            width: 100%;
+            text-align: center;
+            margin-top: 40px;
+            margin-bottom: 20px;
+        }
+
+        .upgrade-button {
+            display: inline-block;
+            padding: 12px 30px;
+            background: linear-gradient(to right, #23a2f6, #1845ad); /* Blue gradient */
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .upgrade-button:hover {
+            background: linear-gradient(to right, #1b82c6, #123c66);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Available Tiers</h2>
+    <!-- Iterate over tiers passed from the controller -->
+    <div th:each="tier : ${tiers}" class="tier-card">
+        <h5 th:text="${tier.name}"></h5>
+        <p class="price" th:text="'Rs' + ${tier.price}"></p>
+        <p th:text="${tier.features}"></p>
+    </div>
+</div>
+<div class="upgrade-button-container">
+    <a href="/api/upgrade" class="btn-check">Ready to Upgrade? <strong>Register Now</strong></a>
+</div>
+</body>
+</html>

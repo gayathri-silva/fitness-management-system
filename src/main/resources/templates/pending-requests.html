@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pending Requests</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            margin-top: 50px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            overflow: hidden;
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: left;
+            color: #333;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .table thead {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .btn {
+            padding: 10px 20px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(0, 123, 255, 0.5);
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+            margin-right: 10px;
+            text-decoration: none;
+            display: inline-block;
+        }
+
+        .btn:hover {
+            background: rgba(0, 123, 255, 0.7);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Pending Requests</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>Request ID</th>
+            <th>Username</th>
+            <th>Request Date</th>
+            <th>Status</th>
+            <th>Tier ID</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="request : ${requests}">
+            <td th:text="${request.requestId}"></td>
+            <td th:text="${request.username}"></td>
+            <td th:text="${request.requestDate}"></td>
+            <td th:text="${request.status}"></td>
+            <td th:text="${request.tierId}"></td>
+        </tr>
+        </tbody>
+    </table>
+    <a href="/admin/dashboard" class="btn">Back to Dashboard</a>
+</div>
+</body>
+</html>

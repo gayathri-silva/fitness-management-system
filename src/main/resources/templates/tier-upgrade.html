@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Upgrade Tier</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #080710;
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background {
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            z-index: 0;
+        }
+
+        .background .shape {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+            backdrop-filter: blur(10px);
+        }
+
+        .shape:first-child {
+            background: linear-gradient(#1845ad, #23a2f6);
+            left: -80px;
+            top: -80px;
+        }
+
+        .shape:last-child {
+            background: linear-gradient(to right, #ff512f, #f09819);
+            right: -30px;
+            bottom: -80px;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 1200px;
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 20px;
+            justify-content: center;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+            color: #ffffff;
+            margin-bottom: 40px;
+            width: 100%;
+        }
+
+        .tier-card {
+            background-color: rgba(255, 255, 255, 0.13);
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 20px;
+            color: #ffffff;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            flex: 1;
+            min-width: 300px;
+            max-width: 350px;
+        }
+
+        .tier-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 0 50px rgba(8, 7, 16, 0.8);
+        }
+
+        .tier-card h5 {
+            font-size: 24px;
+            font-weight: 600;
+            margin-bottom: 15px;
+            text-align: center;
+        }
+
+        .tier-card p {
+            font-size: 16px;
+            font-weight: 300;
+            margin: 10px 0;
+            text-align: center;
+        }
+
+        .tier-card .price {
+            font-size: 20px;
+            font-weight: 500;
+        }
+
+        .tier-card form {
+            text-align: center;
+            margin-top: 20px;
+        }
+
+        .tier-card button {
+            width: 100%;
+            max-width: 150px;
+            background-color: #ffffff;
+            color: #080710;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 600;
+            border-radius: 5px;
+            cursor: pointer;
+            border: none;
+            transition: background-color 0.3s ease;
+        }
+
+        .tier-card button:hover {
+            background-color: #e5e5e5;
+        }
+
+        .back-btn {
+            display: block;
+            width: 150px; /* Fixed width */
+            margin: 20px auto; /* Centered below container */
+            background-color: rgba(255, 255, 255, 0.27);
+            color: #eaf0fb;
+            padding: 10px 0;
+            font-size: 16px;
+            font-weight: 500;
+            border-radius: 5px;
+            text-align: center;
+            text-decoration: none;
+            transition: background-color 0.3s ease;
+            position: relative; /* Ensure it’s not in flex context */
+            z-index: 1;
+        }
+
+        .back-btn:hover {
+            background-color: rgba(255, 255, 255, 0.47);
+        }
+
+        @media (max-width: 1024px) {
+            .tier-card {
+                flex: 1 1 45%;
+                max-width: none;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 10px;
+            }
+
+            .tier-card {
+                flex: 1 1 100%;
+                max-width: none;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<div class="container">
+    <h2>Choose Your Tier</h2>
+    <div th:each="tier : ${tiers}" class="tier-card">
+        <h5 th:text="${tier.name}"></h5>
+        <p class="price">Price: Rs <span th:text="${tier.price}"></span></p>
+        <p th:text="${tier.features}"></p>
+        <form th:action="@{/api/upgrade}" method="post">
+            <input type="hidden" name="tierId" th:value="${tier.tierId}">
+            <button type="submit">Select</button>
+        </form>
+    </div>
+</div>
+<a href="/member/dashboard" class="back-btn">Back</a>
+</body>
+</html>

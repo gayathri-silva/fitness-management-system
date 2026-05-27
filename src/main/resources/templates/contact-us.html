@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact Us</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            margin: 0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .container {
+            max-width: 600px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+        }
+
+        h2 {
+            text-align: center;
+            color: #333;
+            margin-bottom: 20px;
+        }
+
+        p {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+
+        form {
+            display: flex;
+            flex-direction: column;
+        }
+
+        input, textarea {
+            margin-bottom: 15px;
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+        }
+
+        button {
+            padding: 10px;
+            border: none;
+            border-radius: 25px;
+            background: rgba(0, 123, 255, 0.5);
+            color: white;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        button:hover {
+            background: rgba(0, 123, 255, 0.7);
+        }
+
+        .home-button {
+            display: inline-block;
+            text-align: center;
+            padding: 10px;
+            margin-top: 10px;
+            border-radius: 25px;
+            background: rgba(40, 167, 69, 0.5); /* greenish color */
+            color: white;
+            text-decoration: none;
+            transition: background 0.3s ease;
+        }
+
+        .home-button:hover {
+            background: rgba(40, 167, 69, 0.7);
+        }
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Contact Us</h2>
+    <p><strong>Phone:</strong> +94 71 234 5678</p>
+    <p><strong>Email:</strong> gym@example.com</p>
+    <form th:action="@{/contact-us}" method="post">
+        <input type="text" name="name" placeholder="Your Name" required>
+        <input type="email" name="email" placeholder="Your Email" required>
+        <textarea name="message" rows="5" placeholder="Your Concern" required></textarea>
+        <button type="submit">Submit</button>
+    </form>
+    <a href="/" class="home-button">Go to Home</a>
+</div>
+</body>
+</html>

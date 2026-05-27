@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Member Dashboard</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        *,
+        *:before,
+        *:after {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            background-color: #080710; /* Dark background from logger.html */
+            font-family: 'Poppins', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .background {
+            width: 430px;
+            height: 520px;
+            position: absolute;
+            transform: translate(-50%, -50%);
+            left: 50%;
+            top: 50%;
+            z-index: 0;
+        }
+
+        .background .shape {
+            height: 200px;
+            width: 200px;
+            position: absolute;
+            border-radius: 50%;
+            backdrop-filter: blur(10px); /* Blur effect */
+        }
+
+        .shape:first-child {
+            background: linear-gradient(#1845ad, #23a2f6); /* Blue gradient */
+            left: -80px;
+            top: -80px;
+        }
+
+        .shape:last-child {
+            background: linear-gradient(to right, #ff512f, #f09819); /* Orange gradient */
+            right: -30px;
+            bottom: -80px;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 600px; /* Kept for single card */
+            padding: 20px;
+            position: relative;
+            z-index: 1;
+        }
+
+        h2 {
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            text-align: center;
+            color: #ffffff; /* White text */
+            margin-bottom: 40px;
+        }
+
+        .dashboard-card {
+            background-color: rgba(255, 255, 255, 0.13); /* Glassmorphism effect */
+            border-radius: 10px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 0 40px rgba(8, 7, 16, 0.6);
+            padding: 20px;
+            color: #ffffff; /* White text */
+            text-align: center;
+        }
+
+        .dashboard-card img {
+            width: 100px;
+            height: 100px;
+            border-radius: 50%;
+            margin-bottom: 15px;
+            border: 2px solid rgba(255, 255, 255, 0.5); /* Adjusted border to white */
+        }
+
+        .dashboard-card p {
+            font-size: 16px;
+            font-weight: 300;
+            margin: 10px 0;
+            color: #e5e5e5; /* Lighter gray for readability */
+        }
+
+        .alert-warning {
+            background: rgba(255, 193, 7, 0.2);
+            border: 1px solid rgba(255, 193, 7, 0.5);
+            color: #eaf0fb; /* Light text for contrast */
+            padding: 15px;
+            border-radius: 10px;
+            margin-bottom: 20px;
+            backdrop-filter: blur(5px);
+            font-weight: 300;
+        }
+
+        .button-container {
+            margin-bottom: 20px;
+        }
+
+        .btn {
+            padding: 10px 20px;
+            background-color: rgba(255, 255, 255, 0.27); /* Translucent button */
+            color: #eaf0fb; /* Light text */
+            border-radius: 5px;
+            cursor: pointer;
+            transition: background-color 0.3s ease;
+            margin-right: 10px;
+            display: inline-block;
+            text-decoration: none;
+            font-size: 16px;
+            font-weight: 500;
+            border: none;
+        }
+
+        .btn:hover {
+            background-color: rgba(255, 255, 255, 0.47); /* Brighter on hover */
+        }
+
+        .btn-danger {
+            background-color: rgba(255, 81, 47, 0.5); /* Orange-red for logout */
+        }
+
+        .btn-danger:hover {
+            background-color: rgba(255, 81, 47, 0.7);
+        }
+
+        @media (max-width: 768px) {
+            .container {
+                margin: 20px auto;
+                padding: 10px;
+            }
+        }
+    </style>
+</head>
+<body>
+<div class="background">
+    <div class="shape"></div>
+    <div class="shape"></div>
+</div>
+<div class="container">
+    <h2>Member Dashboard</h2>
+    <div class="dashboard-card">
+        <div class="button-container">
+            <a href="/api/users/update" class="btn">Update Details</a>
+            <a href="/api/upgrade" class="btn">Upgrade/Renew Tier</a>
+            <a href="/reviews" class="btn" >Write A review</a>
+            <a href="/api/users/logout" class="btn btn-danger">Logout</a>
+        </div>
+        <img src="https://picsum.photos/100" alt="Random User Profile">
+        <div th:if="${membership.status == 'expired'}" class="alert alert-warning" role="alert">
+            Your membership has expired! Please update your package for the new month.
+        </div>
+        <p>Status: <span th:text="${membership.status}"></span></p>
+        <p>Expiry Date: <span th:text="${membership.expiryDate}"></span></p>
+        <p>Tier ID: <span th:text="${membership.tierId}"></span></p>
+    </div>
+</div>
+</body>
+</html>

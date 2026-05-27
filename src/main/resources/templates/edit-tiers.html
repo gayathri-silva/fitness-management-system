@@ -1,0 +1,207 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Edit Tiers</title>
+    <link href="/css/bootstrap.min.css" rel="stylesheet">
+    <style>
+        body {
+            background: linear-gradient(135deg, #e0eafc, #cfdef3);
+            font-family: 'Arial', sans-serif;
+            min-height: 100vh;
+            position: relative;
+            overflow-x: hidden;
+        }
+
+        .container {
+            margin: 50px auto;
+            max-width: 800px;
+            padding: 20px;
+            background: rgba(255, 255, 255, 0.2);
+            border-radius: 15px;
+            box-shadow: 0 8px 32px rgba(31, 38, 135, 0.37);
+            backdrop-filter: blur(10px);
+            border: 1px solid rgba(255, 255, 255, 0.18);
+            position: relative;
+            z-index: 1;
+        }
+
+        h1, h2 {
+            color: #333;
+            margin-bottom: 20px;
+            text-align: center;
+        }
+
+        .table {
+            width: 100%;
+            border-collapse: collapse;
+            background: rgba(255, 255, 255, 0.15);
+            backdrop-filter: blur(5px);
+            border-radius: 10px;
+            overflow: hidden;
+            margin-bottom: 30px;
+        }
+
+        .table th, .table td {
+            padding: 12px;
+            text-align: left;
+            color: #333;
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .table thead {
+            background: rgba(255, 255, 255, 0.25);
+        }
+
+        .form-container {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 20px;
+            border-radius: 10px;
+            backdrop-filter: blur(5px);
+        }
+
+        .form-container label {
+            display: block;
+            color: #333;
+            margin-bottom: 5px;
+            font-weight: bold;
+        }
+
+        .form-container input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 15px;
+            border: 1px solid rgba(255, 255, 255, 0.3);
+            border-radius: 5px;
+            background: rgba(255, 255, 255, 0.1);
+            color: #333;
+            box-sizing: border-box;
+            transition: border-color 0.3s ease;
+        }
+
+        .form-container input:focus {
+            outline: none;
+            border-color: rgba(0, 123, 255, 0.7);
+        }
+
+        .form-container button {
+            width: 100%;
+            padding: 12px;
+            background: rgba(0, 123, 255, 0.5);
+            color: white;
+            border: none;
+            border-radius: 25px;
+            cursor: pointer;
+            transition: background 0.3s ease;
+        }
+
+        .form-container button:hover {
+            background: rgba(0, 123, 255, 0.7);
+        }
+
+        .background-circles {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: 0;
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+        }
+
+        .circle:nth-child(1) {
+            width: 200px;
+            height: 200px;
+            top: 10%;
+            left: 15%;
+        }
+
+        .circle:nth-child(2) {
+            width: 300px;
+            height: 300px;
+            top: 60%;
+            left: 75%;
+        }
+
+        .circle:nth-child(3) {
+            width: 150px;
+            height: 150px;
+            top: 20%;
+            left: 50%;
+        }
+
+        .doodle-overlay {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-image: url('https://www.transparenttextures.com/patterns/gym-doodle.png');
+            background-repeat: repeat;
+            background-size: auto;
+            opacity: 0.1;
+            z-index: 0;
+        }
+    </style>
+</head>
+<body>
+<div class="background-circles">
+    <div class="circle"></div>
+    <div class="circle"></div>
+    <div class="circle"></div>
+</div>
+<div class="doodle-overlay"></div>
+<div class="container">
+    <h1>Edit Membership Tiers</h1>
+
+    <h2>Current Tiers</h2>
+    <table class="table">
+        <thead>
+        <tr>
+            <th>ID</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th>Features</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="tier : ${tiers}">
+            <td th:text="${tier.tierId}"></td>
+            <td th:text="${tier.name}"></td>
+            <td th:text="${tier.price}"></td>
+            <td th:text="${tier.features}"></td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div class="form-container">
+        <h2>Edit Tier</h2>
+        <form th:action="@{/api/edit-tiers}" th:object="${tier}" method="post">
+            <div>
+                <label for="tierId">Tier ID:</label>
+                <input type="number" id="tierId" th:field="*{tierId}" required>
+            </div>
+            <div>
+                <label for="name">Name:</label>
+                <input type="text" id="name" th:field="*{name}" required>
+            </div>
+            <div>
+                <label for="price">Price:</label>
+                <input type="number" step="0.01" id="price" th:field="*{price}" required>
+            </div>
+            <div>
+                <label for="features">Features:</label>
+                <input type="text" id="features" th:field="*{features}" required>
+            </div>
+            <button type="submit">Update Tier</button>
+        </form>
+    </div>
+</div>
+</body>
+</html>

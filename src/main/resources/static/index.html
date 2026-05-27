@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness App - Welcome</title>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;500;600&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --accent: #FFA500;
+            --color1: linear-gradient(to bottom right, #FFA500, #FF5F1F); /* Orange for register */
+            --blue-gradient: linear-gradient(#1845ad, #23a2f6); /* Blue from login circle */
+            --transparent: rgba(255, 255, 255, 0.13);
+        }
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background-color: #080710;
+            position: relative;
+            overflow: hidden;
+        }
+
+        video {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            min-width: 100%;
+            min-height: 100%;
+            width: auto;
+            height: auto;
+            transform: translate(-50%, -50%);
+            object-fit: cover;
+            opacity: 0.3;
+            z-index: -2;
+        }
+
+        .video-fallback {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(to bottom, rgba(8,7,16,0.8), rgba(8,7,16,1));
+            z-index: -1;
+            display: none; /* Hidden unless video fails */
+        }
+
+        .container {
+            text-align: center;
+            background-color: var(--transparent);
+            padding: 40px;
+            border-radius: 16px;
+            backdrop-filter: blur(10px);
+            border: 2px solid rgba(255,255,255,0.1);
+            box-shadow: 0 0 40px rgba(8,7,16,0.6);
+            position: relative;
+            z-index: 1;
+            width: 400px;
+        }
+
+        h1 {
+            color: #ffffff;
+            font-size: 32px;
+            font-weight: 500;
+            line-height: 42px;
+            margin-bottom: 20px;
+        }
+
+        p {
+            color: #ffffff;
+            font-size: 16px;
+            font-weight: 300;
+            margin-bottom: 30px;
+        }
+
+        .button {
+            display: inline-block;
+            padding: 15px 20px;
+            margin: 10px;
+            font-size: 18px;
+            font-weight: 600;
+            color: #ffffff;
+            text-decoration: none;
+            border-radius: 30px;
+            transition: all 0.4s ease;
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 10px 20px;
+        }
+
+        .login-button {
+            background: var(--blue-gradient);
+        }
+
+        .register-button {
+            background: var(--color1);
+        }
+
+        .button:hover {
+            transform: translateY(-2px);
+            box-shadow: rgba(0, 0, 0, 0.2) 0px 15px 25px;
+        }
+
+        .button:active {
+            transform: scale(0.95);
+            box-shadow: rgba(0, 0, 0, 0.1) 0px 5px 10px;
+        }
+
+        .circle {
+            position: absolute;
+            background: var(--color1);
+            border-radius: 50%;
+            z-index: -1;
+        }
+
+        .circle-1 {
+            width: 200px;
+            height: 200px;
+            top: -100px;
+            left: -100px;
+        }
+
+        .circle-2 {
+            width: 150px;
+            height: 150px;
+            bottom: -75px;
+            right: -75px;
+        }
+    </style>
+</head>
+<body>
+<video id="background-video" autoplay loop muted playsinline>
+    <source src="https://videos.pexels.com/video-files/6390166/6390166-uhd_2560_1440_25fps.mp4" type="video/mp4">
+    Your browser does not support the video tag.
+</video>
+<div class="video-fallback"></div>
+<div class="circle circle-1"></div>
+<div class="circle circle-2"></div>
+<div class="container">
+    <h1>Welcome to the Fitness App</h1>
+    <p>Please choose an option to continue:</p>
+    <a href="/api/users/login" class="button login-button">Login</a>
+    <a href="/api/users/register" class="button register-button">Register</a>
+    <a href="/contact-us" class="button login-button">Contact Us</a>
+    <a href="/api/view-tiers" class="button login-button">View Packages</a>
+    <a href="/products/store" class="button review-button" style="background: linear-gradient(to bottom right, #4CAF50, #45a049); margin-top: 10px; display: block;">🛒   Store  🥗</a>
+    <a href="/reviews/view" class="button review-button" style="background: linear-gradient(to bottom right, #4CAF50, #45a049); margin-top: 10px; display: block;">See Our Reviews ⭐️⭐️⭐️⭐️⭐️</a>
+</div>
+<script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var video = document.getElementById('background-video');
+        var fallback = document.querySelector('.video-fallback');
+
+        // Attempt to play video
+        var playPromise = video.play();
+
+        if (playPromise !== undefined) {
+            playPromise.then(function() {
+                console.log("Video playing successfully");
+            }).catch(function(error) {
+                console.log("Video autoplay failed: ", error);
+                fallback.style.display = 'block';
+                // Try playing on first user interaction
+                document.body.addEventListener('click', function() {
+                    video.play().then(function() {
+                        fallback.style.display = 'none';
+                    });
+                }, { once: true });
+            });
+        }
+    });
+</script>
+</body>
+</html>
